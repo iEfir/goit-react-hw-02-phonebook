@@ -19,7 +19,6 @@ export class App extends Component {
 
   handleAddContact = values => {
     const name = this.state.contacts.map(contact => contact.name);
-    console.log('name:', name);
 
     if (name.includes(values.name)) {
       Notify.warning(`${values.name} is already in contant`);
@@ -49,14 +48,15 @@ export class App extends Component {
   };
 
   render() {
+    const contacts = this.getContacts();
     return (
       <Layout>
         <h1>Phonebook</h1>
         <Forma addContact={this.handleAddContact} />
         <h2>Contacts</h2>
-        <Filter state={this.state} onChange={this.handleOnChange} />
+        <Filter onChange={this.handleOnChange} />
         <Contacts
-          contacts={this.getContacts()}
+          contacts={contacts}
           deleteContact={this.handleDeleteContact}
         />
         <GlobalStyle />

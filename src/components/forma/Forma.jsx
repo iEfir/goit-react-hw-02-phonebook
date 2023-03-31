@@ -1,5 +1,7 @@
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
+import { Button, Forms, Input } from './Forma.styled';
 
 const Forma = ({ addContact }) => {
   const initialValues = {
@@ -15,10 +17,10 @@ const Forma = ({ addContact }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
-      <Form>
+      <Forms>
         <label htmlFor="name">
           Name
-          <Field
+          <Input
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -28,7 +30,7 @@ const Forma = ({ addContact }) => {
         </label>
         <label htmlFor="tel">
           Number
-          <Field
+          <Input
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -36,10 +38,12 @@ const Forma = ({ addContact }) => {
             required
           />
         </label>
-        <button type="submit">Add contact</button>
-      </Form>
+        <Button type="submit">Add contact</Button>
+      </Forms>
     </Formik>
   );
 };
 
 export { Forma };
+
+Forma.propTypes = { addContact: PropTypes.func.isRequired };
